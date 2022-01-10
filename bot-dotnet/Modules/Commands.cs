@@ -36,7 +36,7 @@ namespace DiscordBot.Modules
 
             foreach (SocketRole Role in User.Roles)
             {
-                if (Role.Name == "Buyer")
+                if (Role.Name == "Client")
                 {
                     License = true;
                 }
@@ -112,6 +112,24 @@ namespace DiscordBot.Modules
 
             new Thread(CreateMessage).Start();
         }
+        /*
+        [Command("Example")]
+        public async Task example()
+        {
+            var Embed = new EmbedBuilder();
+            IUserMessage IUserMessage = null;
+
+            Embed.WithAuthor((new EmbedAuthorBuilder { Name = "PSU Obfuscation" }));
+        
+            Embed.WithFooter(F => F.Text = $"PSU Obfuscator {Program.VERSION}").WithColor(Color.Red).WithCurrentTimestamp();
+
+            //Example
+            
+            Embed.WithDescription("Example");
+
+            IUserMessage = await ReplyAsync($":ballot_box_with_check:", (false), Embed.Build());
+        }
+         */
         [Command("enablerestricted")]
         public async Task EnabledRestrictedMode()
         {
@@ -123,9 +141,9 @@ namespace DiscordBot.Modules
 
             Program.RESTRICTED_MODE = true;
 
-            Embed.WithDescription("RestrictedMode");
+            Embed.WithDescription("RestrictedMode::Enabled");
 
-            IUserMessage = await ReplyAsync($"Restricted mode: **Enabled**", (false), Embed.Build());
+            IUserMessage = await ReplyAsync($":ballot_box_with_check: Only the owner can Obfuscate!", (false), Embed.Build());
         }
         [Command("disablerestricted")]
         public async Task DisabledRestrictedMode()
@@ -138,9 +156,24 @@ namespace DiscordBot.Modules
 
             Program.RESTRICTED_MODE = false;
 
-            Embed.WithDescription("RestrictedMode");
+            Embed.WithDescription("RestrictedMode::Disabled");
 
-            IUserMessage = await ReplyAsync($"Restricted mode: **Disabled**", (false), Embed.Build());
+            IUserMessage = await ReplyAsync($":ballot_box_with_check: buyers and nonbuyers can Obfuscate!", (false), Embed.Build());
+        }
+        [Command("ircChat")]
+        public async Task ircChat()
+        {
+            var Embed = new EmbedBuilder();
+            IUserMessage IUserMessage = null;
+
+            Embed.WithAuthor((new EmbedAuthorBuilder { Name = "PSU Obfuscation" }));
+            Embed.WithFooter(F => F.Text = $"PSU Obfuscator {Program.VERSION}").WithColor(Color.Green).WithCurrentTimestamp();
+
+            Program.RESTRICTED_MODE = false;
+
+            Embed.WithDescription("Message sent!");
+
+            IUserMessage = await ReplyAsync($":ballot_box_with_check:", (false), Embed.Build());
         }
     };
 };
