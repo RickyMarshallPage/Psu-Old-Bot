@@ -82,7 +82,7 @@ namespace DiscordBot.Modules
                     async void AddReactions() { await IUserMessage.AddReactionAsync(Program.A); await IUserMessage.AddReactionAsync(Program.B); await IUserMessage.AddReactionAsync(Program.C); await IUserMessage.AddReactionAsync(Program.D); await IUserMessage.AddReactionAsync(Program.E); };
                     new Thread(AddReactions).Start();
                 }
-                else if (ServerBoost)
+                else if  (License != true)
                 {
                     Embed.WithDescription("Please upload a file or respond with formatted text to complete the process. **If you want this session to be private, please obfuscate in DMs!**");
 
@@ -91,7 +91,7 @@ namespace DiscordBot.Modules
                     Embed.AddField(":regional_indicator_a: Encrypt All Strings", "Encrypts all strings in the file where they are defined. **This setting should NOT be used in large scripts and will cause a large performance loss and increase in obfuscation time.**");
                     Embed.AddField(":regional_indicator_b: Disable Super Operators", "Disables generation of Super Operators. This may fix some errors in scripts, but will also decrease performance.");
 
-                    IUserMessage = await ReplyAsync($"{User.Mention}, Thank you for using PSU Obfuscation!", (false), Embed.Build());
+                    IUserMessage = await ReplyAsync($"{User.Mention}, Thank you for using PSU Obfuscation! You have **∞** obfuscations remaining today!", (false), Embed.Build());
 
                     if (Program.Processes.ContainsKey(UserID)) { Program.StopObfuscationProcess(UserID); };
                     Program.Processes[UserID] = (new Program.ObfuscationProcess { UserId = UserID, IUserMessage = IUserMessage, License = false, Boost = true });
