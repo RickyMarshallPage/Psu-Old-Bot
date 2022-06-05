@@ -42,7 +42,7 @@ namespace DiscordBot
 
         private static Encoding LuaEncoding = Encoding.GetEncoding(28591);
 
-        private static string Token = "OTI5OTI3NDkwNjQwNjk1MzM2.Yducdg.9aLQzkIf6OGci8LVFGd_2bz_S1Y";
+        private static string Token = "Your bot token";
 
         public static Emoji A = new Emoji("🇦");
         public static Emoji B = new Emoji("🇧");
